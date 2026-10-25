@@ -12,6 +12,7 @@ import re
 import subprocess
 import urllib.parse
 import urllib.request
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PLACES_DIR = os.path.join(ROOT, 'content', 'places')
@@ -101,7 +102,15 @@ def main():
             continue
         path = 'covers/%s.jpg' % slug
         open(os.path.join(ROOT, path), 'wb').write(data)
+        # 缩略图（国内访问加速：列表/封面用小图）
+        spath = 'covers/%s_s.jpg' % slug
+        img = Image.open(os.path.join(ROOT, path)).convert('RGB')
+        w, h = img.size
+        s2 = min(1.0, 700 / max(w, h))
+        img.resize((int(w * s2), int(h * s2)), Image.LANCZOS).save(
+            os.path.join(ROOT, spath), 'JPEG', quality=76, optimize=True)
         place['coverPhoto'] = path
+        place['coverThumb'] = spath
         place['coverCredit'] = {
             'author': got['author'], 'license': got['license'],
             'title': got['title'], 'source': got['source'],
@@ -110,7 +119,7 @@ def main():
             json.dump(place, f, ensure_ascii=False, indent=2)
             f.write('\n')
         if slug in by_slug:
-            by_slug[slug]['cover'] = path
+            by_slug[slug]['cover'] = spath
         credits[slug] = got
         print('OK %-13s %4dKB  %s | %s' % (slug, len(data) // 1024, got['license'], got['author']))
         changed = True
