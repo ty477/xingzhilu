@@ -39,7 +39,7 @@ def api_search(query):
         'iiprop': 'url|extmetadata|size|mime', 'iiurlwidth': '1600', 'format': 'json'})
     req = urllib.request.Request('https://commons.wikimedia.org/w/api.php?' + qs, headers=UA)
     with urllib.request.urlopen(req, timeout=40) as r:
-        return json.load(r.read().decode()).get('query', {}).get('pages', {})
+        return json.loads(r.read().decode()).get('query', {}).get('pages', {})
 
 
 def strip_html(s):
