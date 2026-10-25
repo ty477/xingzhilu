@@ -918,5 +918,13 @@
   }
 
   /* ---------- 启动 ---------- */
-  loadSite().then(loadPlaces).then(route).catch(route);
+  loadSite().then(loadPlaces).then(function () {
+    // 自愈：早期版本可能把项目页的仓库名错存为 <owner>.github.io，自动改正
+    var c = Gh.cfg();
+    var det = Gh.detect();
+    if (det && c.repo === c.owner + '.github.io' && det.repo !== c.repo) {
+      Gh.setCfg({ owner: det.owner, repo: det.repo });
+    }
+    route();
+  }).catch(route);
 })();
