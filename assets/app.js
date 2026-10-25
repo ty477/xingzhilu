@@ -6,7 +6,11 @@
   var store = {
     site: null,
     places: null,   // 索引数组
-    pollTimer: null
+    pollTimer: null,
+    view: '',
+    next: null,     // → 键回调（首页切书 / 地方页翻页）
+    prev: null,     // ← 键回调
+    curSlug: ''
   };
   var CN_NUM = ['壹', '贰', '叁'];
 
@@ -19,6 +23,9 @@
     if (m) return m[1] + ' 年 ' + parseInt(m[2], 10) + ' 月';
     return String(d);
   }
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  var SPINE_COLORS = ['#3E5C50', '#2F4858', '#B08530', '#7E3B3B', '#2E4A78', '#3A3A38', '#8B6F47', '#5B7280', '#6B4E6E', '#4E6B45'];
+  function spineColorAt(i) { return SPINE_COLORS[i % SPINE_COLORS.length]; }
   function jget(url) {
     return fetch(url + (url.indexOf('?') >= 0 ? '&' : '?') + 't=' + Date.now())
       .then(function (r) {
@@ -45,6 +52,12 @@
   function closeModal() { document.getElementById('modal-root').innerHTML = ''; }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { closeModal(); closeLightbox(); }
+    if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    if (document.getElementById('lightbox').hidden) {
+      if (e.key === 'ArrowRight' && store.next) { e.preventDefault(); store.next(); }
+      if (e.key === 'ArrowLeft' && store.prev) { e.preventDefault(); store.prev(); }
+      if (e.key === 'Enter' && store.view === 'home' && store.curSlug) { location.hash = '#/place/' + store.curSlug; }
+    }
   });
 
   /* ---------- 图片压缩 ---------- */
@@ -97,6 +110,8 @@
   /* ---------- 路由 ---------- */
   function route() {
     if (store.pollTimer) { clearInterval(store.pollTimer); store.pollTimer = null; }
+    store.next = null;
+    store.prev = null;
     closeLightbox();
     document.getElementById('modal-root').innerHTML = '';
     var h = location.hash || '#/';
@@ -112,47 +127,97 @@
   }
   window.addEventListener('hashchange', route);
 
-  /* ---------- 首页 ---------- */
+  /* ---------- 首页 · 书架 ---------- */
+  var shelf = { idx: 0 };
+
   function viewHome() {
-    app.innerHTML = '<div class="loading">正在展开地图 …</div>';
+    store.view = 'home';
     var places = sortedPlaces();
     var site = store.site || {};
     var nPhotos = 0;
     places.forEach(function (p) { nPhotos += (p.photoCount || 0); });
-    var cards = places.map(function (p) {
-      return (
-        '<a class="card" href="#/place/' + p.slug + '">' +
-          '<div class="card-cover"><img src="' + esc(p.cover || 'placeholder/default.svg') + '" alt="' + esc(p.name) + '" loading="lazy">' +
-          (p.status === 'pending' ? '<span class="cover-tag">✍️ AI 生成中</span>' : '') +
-          '</div>' +
-          '<div class="card-body">' +
-            '<div class="card-title">' + esc(p.name) + (p.date ? '<span class="date">' + esc(fmtDate(p.date)) + '</span>' : '') + '</div>' +
-            '<p class="card-summary">' + esc(p.summary || '一段还没写下的旅程。') + '</p>' +
-            '<div class="card-tags">' +
-              (p.region ? '<span class="tag">' + esc(p.region) + '</span>' : '') +
-              (p.landform ? '<span class="tag warm">' + esc(p.landform) + '</span>' : '') +
-            '</div>' +
-          '</div>' +
-        '</a>'
-      );
-    }).join('');
+
+    if (!places.length) {
+      app.innerHTML = '<section class="shelf-hero"><div class="shelf-empty"><span class="pencil">📚</span>书架还空着。<br><a href="#/admin">去放第一本相册 →</a></div></section>';
+      window.scrollTo(0, 0);
+      return;
+    }
+    if (shelf.idx >= places.length) shelf.idx = 0;
 
     app.innerHTML =
-      '<section class="hero">' +
-        '<h1>' + esc(site.title || '行知录') + '</h1>' +
-        '<p>' + esc(site.subtitle || '') + '</p>' +
-        '<div class="hero-stats">' +
-          '<div class="stat"><b>' + places.length + '</b><span>去过的地方</span></div>' +
-          '<div class="stat"><b>' + nPhotos + '</b><span>收藏的照片</span></div>' +
-          '<div class="stat"><b>∞</b><span>想看的世界</span></div>' +
+      '<section class="shelf-hero">' +
+        '<div class="shelf-top">' +
+          '<div class="shelf-brand">' + esc(site.title || '行知录') + '<i>——</i>' + esc(site.tagline || '互动旅行档案') + '</div>' +
+          '<div class="shelf-meta">' + places.length + ' 册旅行日志 · ' + nPhotos + ' 张照片</div>' +
         '</div>' +
-      '</section>' +
-      '<div class="home-body">' +
-        '<h2>走过的地方 <small>按时间倒序 · 点击进入</small></h2>' +
-        (places.length
-          ? '<div class="grid">' + cards + '</div>'
-          : '<div class="feelings-empty"><span class="pencil">🗺️</span>还没有地方。去「管理」页添加你的第一段旅程吧。</div>') +
-      '</div>';
+        '<div class="shelf-stage">' +
+          '<aside class="shelf-info" id="shelf-info"></aside>' +
+          '<div class="shelf-book"><div class="book3d" id="book3d"></div><div class="book-shadow"></div></div>' +
+          '<div class="shelf-spines" id="shelf-spines">' +
+            places.map(function (p, i) {
+              return '<div class="spine" data-i="' + i + '" style="--sp:' + spineColorAt(i) + '" title="' + esc(p.name) + '">' +
+                '<span class="ring"></span>' +
+                '<span class="sp-name">' + esc(p.name) + '</span>' +
+                '<span class="sp-num">' + pad2(i + 1) + '</span>' +
+              '</div>';
+            }).join('') +
+            '<div class="shelf-rail"></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="shelf-hint">← → 切换相册 · 点击书脊选择 · 回车翻开</div>' +
+      '</section>';
+
+    var spinesEl = $('#shelf-spines');
+
+    function selectBook(i, silent) {
+      shelf.idx = (i + places.length) % places.length;
+      var p = places[shelf.idx];
+      store.curSlug = p.slug;
+      store.prev = function () { selectBook(shelf.idx - 1); };
+      store.next = function () { selectBook(shelf.idx + 1); };
+
+      var num = pad2(shelf.idx + 1);
+      var info = $('#shelf-info');
+      info.innerHTML =
+        '<div class="progress"><a id="sh-prev" title="上一册">←</a><b>' + num + '</b><span class="line"></span><span>' + pad2(places.length) + '</span></div>' +
+        '<h1 class="shelf-title">' + esc(p.name) + '</h1>' +
+        '<p class="shelf-sub">' + [p.region, p.landform].filter(Boolean).map(esc).join(' · ') + '</p>' +
+        '<p class="shelf-summary">' + esc(p.summary || '一段还没写下的旅程。') + '</p>' +
+        '<div class="shelf-open"><a class="open-link" href="#/place/' + p.slug + '">打开旅程 ↗</a>' +
+          (p.status === 'pending' ? '<span class="badge pending">✍️ AI 生成中</span>' : '') +
+        '</div>';
+      if (!silent) { info.classList.remove('pop'); void info.offsetWidth; info.classList.add('pop'); }
+      $('#sh-prev').addEventListener('click', function (e) { e.preventDefault(); selectBook(shelf.idx - 1); });
+
+      var book = $('#book3d');
+      var cover = p.cover || 'placeholder/default.svg';
+      book.style.setProperty('--sp', spineColorAt(shelf.idx));
+      book.innerHTML =
+        '<div class="b3d-spine"><span class="sp-name">' + esc(p.name) + '</span></div>' +
+        '<div class="b3d-pages"></div>' +
+        '<div class="b3d-top"></div>' +
+        '<div class="b3d-bottom"></div>' +
+        '<div class="b3d-cover">' +
+          '<img class="cov" src="' + esc(cover) + '" alt="' + esc(p.name) + '">' +
+          '<div class="b3d-brow">' + esc(site.title || '行知录') + ' · 手册 ' + num + '</div>' +
+          '<div class="b3d-veil"></div>' +
+          '<div class="b3d-label"><span>' + esc(p.region || '') + (p.date ? ' · ' + esc(fmtDate(p.date)) : '') + '</span><b>' + num + '</b></div>' +
+        '</div>';
+      if (!silent) { book.classList.remove('pop'); void book.offsetWidth; book.classList.add('pop'); }
+
+      spinesEl.querySelectorAll('.spine').forEach(function (el, k) {
+        el.classList.toggle('sel', k === shelf.idx);
+      });
+    }
+
+    spinesEl.addEventListener('click', function (e) {
+      var sp = e.target.closest('.spine');
+      if (!sp) return;
+      var i = parseInt(sp.getAttribute('data-i'), 10);
+      if (i !== shelf.idx) selectBook(i);
+    });
+
+    selectBook(shelf.idx, true);
     window.scrollTo(0, 0);
   }
 
@@ -164,6 +229,7 @@
   }
 
   async function viewPlace(slug) {
+    store.view = 'place';
     app.innerHTML = '<div class="loading">正在翻到这一页 …</div>';
     var p;
     try { p = await getPlace(slug); }
@@ -202,17 +268,22 @@
         '</div>' +
       '</div>';
 
-    /* 相册 */
-    var album;
-    if (photos.length) {
-      album = '<div class="masonry">' + photos.map(function (ph, i) {
-        return '<figure data-idx="' + i + '"><img src="' + esc(ph.file) + '" alt="' + esc(p.name) + ' ' + (i + 1) + '" loading="lazy"></figure>';
-      }).join('') + '</div>';
-    } else {
-      album =
-        '<figure style="margin:0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)"><img src="' + esc(cover) + '" alt="' + esc(p.name) + '"></figure>' +
-        '<div class="placeholder-note">🌄 这里暂时是占位图。点击右上角「添加照片」，把这个地方换成你亲眼见过的样子。</div>';
-    }
+    /* 相册 · 摊开的翻页相册 */
+    var photoSrcs = photos.length
+      ? photos.map(function (ph) { return ph.file; })
+      : [p.placeholder || 'placeholder/default.svg'];
+    var single = window.matchMedia('(max-width: 640px)').matches;
+    var album =
+      '<div class="flipbook" id="flipbook">' +
+        '<div class="fb-book"><div class="fb-half fb-left"></div><div class="fb-half fb-right"></div></div>' +
+        '<div class="fb-ctrl">' +
+          '<button class="fb-btn" id="fb-prev">‹ 上一页</button>' +
+          '<span class="fb-count"></span>' +
+          '<button class="fb-btn" id="fb-next">下一页 ›</button>' +
+        '</div>' +
+        '<div class="fb-hint">点击书页或 ← → 键翻页 · 点击照片可放大</div>' +
+      '</div>' +
+      (photos.length ? '' : '<div class="placeholder-note">🌄 这本相册里还是占位图。点右上角「添加照片」，换上你亲眼见过的画面。</div>');
 
     /* 风景介绍 */
     var intro;
@@ -254,14 +325,117 @@
         '</section>' +
       '</div>';
 
-    /* 事件绑定 */
-    document.querySelectorAll('.masonry figure').forEach(function (fig) {
-      fig.addEventListener('click', function () {
-        openLightbox(photos.map(function (ph) { return ph.file; }), parseInt(fig.getAttribute('data-idx'), 10), p.name);
-      });
-    });
+    /* 事件绑定 · 翻页相册 */
+    initFlipbook(p, photoSrcs, single);
     $('#btn-edit-feelings').addEventListener('click', function () { editFeelings(p); });
     $('#btn-add-photos').addEventListener('click', function () { addPhotosFlow(p); });
+  }
+
+  /* ---------- 翻页相册（摊开的书） ---------- */
+  function initFlipbook(p, photoSrcs, single) {
+    var fb = $('#flipbook');
+    if (!fb) return;
+    var site = store.site || {};
+
+    // 页序列：扉页 + 每张照片一页，末尾补齐成对
+    var pages = [{ type: 'title', name: p.name }];
+    photoSrcs.forEach(function (f, i) { pages.push({ type: 'photo', src: f, i: i }); });
+    pages.push({ type: 'end' });
+    while (pages.length % (single ? 1 : 2)) pages.push({ type: 'blank' });
+
+    var maxIdx = single ? pages.length - 1 : pages.length / 2 - 1;
+    var cur = 0, flipping = false;
+
+    function pageHTML(pg, no) {
+      var numHTML = no ? '<i class="pgno">' + no + '</i>' : '';
+      if (pg.type === 'title') {
+        return '<div class="fb-page fb-title">' +
+          '<div class="fb-ring"></div>' +
+          '<div class="fbt-brow">' + esc(site.title || '行知录') + ' · 旅行手册</div>' +
+          '<h3>' + esc(pg.name) + '</h3>' +
+          '<p class="fbt-meta">' + [p.region, p.date ? fmtDate(p.date) : ''].filter(Boolean).map(esc).join(' · ') + '</p>' +
+          '<p class="fbt-foot">' + (p.photos.length ? p.photos.length + ' 张照片 · ' : '占位相册 · ') + (p.landform || '') + '</p>' +
+          numHTML + '</div>';
+      }
+      if (pg.type === 'photo') {
+        return '<div class="fb-page fb-photo"><img src="' + esc(pg.src) + '" data-zoom="' + pg.i + '" alt="' + esc(p.name) + '">' +
+          '<div class="fb-cap">' + esc(p.name) + ' · ' + pad2(pg.i + 1) + '</div>' + numHTML + '</div>';
+      }
+      if (pg.type === 'end') {
+        return '<div class="fb-page fb-end"><span class="end-mark">❋</span><p>这一页之后的故事，<br>等你继续拍下去。</p>' + numHTML + '</div>';
+      }
+      return '<div class="fb-page fb-blank">' + numHTML + '</div>';
+    }
+
+    var leftEl = fb.querySelector('.fb-left');
+    var rightEl = fb.querySelector('.fb-right');
+    var bookEl = fb.querySelector('.fb-book');
+    var countEl = fb.querySelector('.fb-count');
+
+    function renderSpread() {
+      if (single) {
+        rightEl.innerHTML = pageHTML(pages[cur], cur + 1);
+        countEl.textContent = (cur + 1) + ' / ' + pages.length;
+      } else {
+        leftEl.innerHTML = pageHTML(pages[2 * cur], 2 * cur + 1);
+        rightEl.innerHTML = pageHTML(pages[2 * cur + 1], 2 * cur + 2);
+        countEl.textContent = (2 * cur + 1) + '–' + (2 * cur + 2) + ' / ' + pages.length;
+      }
+    }
+
+    function flip(dir) {
+      if (flipping) return;
+      if (dir > 0 && cur >= maxIdx) { toast('已经是最后一页了'); return; }
+      if (dir < 0 && cur <= 0) { toast('这是扉页'); return; }
+      flipping = true;
+      var frontPg, backPg;
+      if (single) {
+        frontPg = dir > 0 ? pages[cur] : pages[cur - 1];
+        backPg = dir > 0 ? pages[cur + 1] : pages[cur];
+      } else {
+        frontPg = dir > 0 ? pages[2 * cur + 1] : pages[2 * (cur - 1) + 1];
+        backPg = dir > 0 ? pages[2 * (cur + 1)] : pages[2 * cur];
+      }
+      var sheet = document.createElement('div');
+      sheet.className = 'fb-sheet' + (dir < 0 ? ' back' : '');
+      sheet.innerHTML =
+        '<div class="face front">' + pageHTML(frontPg) + '</div>' +
+        '<div class="face back">' + pageHTML(backPg) + '</div>';
+      bookEl.appendChild(sheet);
+      void sheet.offsetWidth;   // 强制回流，确保过渡动画触发
+      var settled = false;
+      var cleanup = function () {
+        if (settled) return;
+        settled = true;
+        cur += dir;
+        renderSpread();
+        sheet.remove();
+        flipping = false;
+      };
+      var fallback = setTimeout(cleanup, 900);   // 兜底：动画被禁用/不触发时也能完成
+      sheet.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'transform') { clearTimeout(fallback); cleanup(); }
+      });
+      sheet.classList.add('go');
+    }
+
+    renderSpread();
+    store.next = function () { flip(1); };
+    store.prev = function () { flip(-1); };
+
+    fb.querySelector('#fb-next').addEventListener('click', function () { flip(1); });
+    fb.querySelector('#fb-prev').addEventListener('click', function () { flip(-1); });
+    rightEl.addEventListener('click', function (e) {
+      var img = e.target.closest('img[data-zoom]');
+      if (img) {
+        openLightbox(photoSrcs, parseInt(img.getAttribute('data-zoom'), 10), p.name);
+        return;
+      }
+      flip(1);
+    });
+    if (!single) {
+      leftEl.addEventListener('click', function () { flip(-1); });
+    }
   }
 
   /* ---------- 灯箱 ---------- */
