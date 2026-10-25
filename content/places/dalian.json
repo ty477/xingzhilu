@@ -1,0 +1,35 @@
+{
+  "slug": "dalian",
+  "name": "大连",
+  "date": "2024-05",
+  "region": "辽宁省大连市 · 辽东半岛南端",
+  "landform": "海蚀海岸 · 半岛",
+  "notes": "五一去的滨海之城：星海广场、滨海路，海蚀崖与礁石",
+  "coords": {
+    "lat": 38.91,
+    "lng": 121.61
+  },
+  "status": "pending",
+  "introSource": null,
+  "photos": [],
+  "placeholder": "placeholder/dalian.svg",
+  "geo": {
+    "landform": "基岩港湾海岸（海蚀地貌）",
+    "elevation": "海岸 0–100 米（大黑山 663 米）",
+    "position": "38.91°N, 121.61°E",
+    "bestSeason": "5–9 月"
+  },
+  "intro": "",
+  "summary": "",
+  "feelings": "",
+  "nextStops": [
+    {
+      "name": "旅顺口",
+      "why": "军港与近代史，海蚀地貌集中"
+    },
+    {
+      "name": "丹东",
+      "why": "鸭绿江口，江与海的交汇"
+    }
+  ]
+}
