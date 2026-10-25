@@ -6,7 +6,7 @@
       "date": "",
       "region": "甘肃省酒泉市",
       "landform": "沙漠 · 绿洲 · 风蚀",
-      "cover": "covers/dunhuang.jpg",
+      "cover": "placeholder/dunhuang.svg",
       "photoCount": 0,
       "summary": "丝路咽喉：风与沙、泉与窟在此同框。",
       "status": "ready"
@@ -14,10 +14,10 @@
     {
       "slug": "qinghaihu",
       "name": "青海湖",
-      "date": "",
+      "date": "2025-07",
       "region": "青海省海南藏族自治州",
       "landform": "高原断陷湖",
-      "cover": "covers/qinghaihu.jpg",
+      "cover": "placeholder/qinghaihu.svg",
       "photoCount": 0,
       "summary": "青色的海——中国最大的咸水湖，构造与气候的作品。",
       "status": "ready"
@@ -25,10 +25,10 @@
     {
       "slug": "zhangye",
       "name": "张掖 · 七彩丹霞",
-      "date": "",
+      "date": "2025-07",
       "region": "甘肃省张掖市临泽县",
       "landform": "彩色丘陵 · 丹霞",
-      "cover": "covers/zhangye.jpg",
+      "cover": "placeholder/zhangye.svg",
       "photoCount": 0,
       "summary": "一亿年沉积挤压出的千层糕，中国最鲜艳的山。",
       "status": "ready"
@@ -36,10 +36,10 @@
     {
       "slug": "changbaishan",
       "name": "长白山 · 天池",
-      "date": "",
+      "date": "2026-10",
       "region": "吉林省延边朝鲜族自治州",
       "landform": "火山 · 火口湖",
-      "cover": "covers/changbaishan.jpg",
+      "cover": "placeholder/changbaishan.svg",
       "photoCount": 0,
       "summary": "火山口里的中国最深湖泊，运气与日出的赌局。",
       "status": "ready"
@@ -47,46 +47,57 @@
     {
       "slug": "xian",
       "name": "西安",
-      "date": "",
+      "date": "2023-07",
       "region": "陕西省西安市",
       "landform": "关中平原",
-      "cover": "covers/xian.jpg",
+      "cover": "placeholder/xian.svg",
       "photoCount": 0,
-      "summary": "西安：渭河谷地上的古都，南望秦岭",
-      "status": "ready"
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
     },
     {
       "slug": "shenzhen",
       "name": "深圳",
-      "date": "",
+      "date": "2026-07",
       "region": "广东省深圳市",
       "landform": "滨海丘陵",
-      "cover": "covers/shenzhen.jpg",
+      "cover": "placeholder/shenzhen.svg",
       "photoCount": 0,
-      "summary": "深圳：丘陵海岸与滨海平原上的四十年城市地理",
-      "status": "ready"
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
     },
     {
       "slug": "zhuzhou",
       "name": "株洲",
-      "date": "",
+      "date": "2018-07",
       "region": "湖南省株洲市",
       "landform": "湘江谷地",
-      "cover": "covers/zhuzhou.jpg",
+      "cover": "placeholder/zhuzhou.svg",
       "photoCount": 0,
-      "summary": "湘江谷地与铁路十字路口的工业城市",
-      "status": "ready"
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
     },
     {
       "slug": "beijing",
       "name": "北京",
-      "date": "",
+      "date": "2025-10",
       "region": "北京市",
       "landform": "华北平原",
-      "cover": "covers/beijing.jpg",
+      "cover": "placeholder/beijing.svg",
       "photoCount": 0,
-      "summary": "北京：燕山与西山之间的平原古都，山前冲积扇上的中轴线之城。",
-      "status": "ready"
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
+    },
+    {
+      "slug": "dalian",
+      "name": "大连",
+      "date": "2024-05",
+      "region": "辽宁省大连市",
+      "landform": "海蚀海岸",
+      "cover": "placeholder/dalian.svg",
+      "photoCount": 0,
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
     }
   ]
 }
