@@ -63,21 +63,23 @@
 
   /* ---------- 图片压缩 ---------- */
   var MAX_SIDE = 2560, QUALITY = 0.86;
-  async function compressImage(file) {
+  async function compressImage(file, maxSide, quality) {
+    maxSide = maxSide || MAX_SIDE;
+    quality = quality == null ? QUALITY : quality;
     if (!/^image\//.test(file.type)) throw new Error('「' + file.name + '」不是图片文件');
     if (/hei[cf]/i.test(file.type) || /\.hei[cf]$/i.test(file.name)) {
       throw new Error('「' + file.name + '」是 HEIC 格式，浏览器无法处理。iPhone 请到 设置→相机→格式 选「兼容性最佳」后重拍，或先转换成 JPG。');
     }
     var bmp = await createImageBitmap(file);
     var w = bmp.width, h = bmp.height;
-    var scale = Math.min(1, MAX_SIDE / Math.max(w, h));
+    var scale = Math.min(1, maxSide / Math.max(w, h));
     var cv = document.createElement('canvas');
     cv.width = Math.round(w * scale);
     cv.height = Math.round(h * scale);
     var ctx = cv.getContext('2d');
     ctx.drawImage(bmp, 0, 0, cv.width, cv.height);
     bmp.close && bmp.close();
-    var blob = await new Promise(function (res) { cv.toBlob(res, 'image/jpeg', QUALITY); });
+    var blob = await new Promise(function (res) { cv.toBlob(res, 'image/jpeg', quality); });
     if (!blob) throw new Error('图片处理失败');
     return blob;
   }
@@ -102,6 +104,13 @@
     if (p.photos && p.photos.length) return p.photos[0].file;
     if (p.coverPhoto) return p.coverPhoto;
     return p.placeholder || 'placeholder/default.svg';
+  }
+  // 小图优先（国内访问 github.io 慢，列表/封面用缩略图，点开才加载原图）
+  function thumbOf(ph) { return (ph && ph.thumb) || ph.file; }
+  function coverImgOf(p) {
+    if (p.photos && p.photos.length) return thumbOf(p.photos[0]);
+    if (p.coverThumb) return p.coverThumb;
+    return coverOf(p);
   }
   function sortedPlaces() {
     return (store.places || []).slice().sort(function (a, b) {
@@ -279,9 +288,11 @@
   }
 
   function renderPlace(p) {
-    var cover = coverOf(p);
+    var cover = coverImgOf(p);
     var photos = p.photos || [];
     var geo = p.geo || {};
+    var albumSrcs = photos.length ? photos.map(thumbOf) : [coverImgOf(p)];
+    var fullSrcs = photos.length ? photos.map(function (ph) { return ph.file; }) : albumSrcs.slice();
 
     var hero =
       '<div class="place-hero">' +
@@ -295,9 +306,7 @@
       '</div>';
 
     /* 相册 · 摊开的翻页相册 */
-    var photoSrcs = photos.length
-      ? photos.map(function (ph) { return ph.file; })
-      : [p.coverPhoto || p.placeholder || 'placeholder/default.svg'];
+    var photoSrcs = albumSrcs;
     var single = window.matchMedia('(max-width: 640px)').matches;
     var album =
       '<div class="flipbook" id="flipbook">' +
@@ -359,13 +368,13 @@
       '</div>';
 
     /* 事件绑定 · 翻页相册 */
-    initFlipbook(p, photoSrcs, single);
+    initFlipbook(p, photoSrcs, fullSrcs, single);
     $('#btn-edit-feelings').addEventListener('click', function () { editFeelings(p); });
     $('#btn-add-photos').addEventListener('click', function () { addPhotosFlow(p); });
   }
 
   /* ---------- 翻页相册（摊开的书） ---------- */
-  function initFlipbook(p, photoSrcs, single) {
+  function initFlipbook(p, photoSrcs, fullSrcs, single) {
     var fb = $('#flipbook');
     if (!fb) return;
     var site = store.site || {};
@@ -461,7 +470,7 @@
     rightEl.addEventListener('click', function (e) {
       var img = e.target.closest('img[data-zoom]');
       if (img) {
-        openLightbox(photoSrcs, parseInt(img.getAttribute('data-zoom'), 10), p.name);
+        openLightbox(fullSrcs, parseInt(img.getAttribute('data-zoom'), 10), p.name);
         return;
       }
       flip(1);
@@ -574,17 +583,18 @@
      - onDone 回调刷新页面 */
   async function uploadPhotos(slug, files, ui) {
     var log = ui && ui.log ? ui.log : function () {};
-    var blobs = [];
+    var pairs = [];
     for (var i = 0; i < files.length; i++) {
       log(i, 'doing', '压缩中');
       try {
-        var b = await compressImage(files[i]);
-        blobs.push(b);
+        var b = await compressImage(files[i]);                // 原图（最长边 2560）
+        var t = await compressImage(files[i], 900, 0.76);     // 缩略图（列表加载用）
+        pairs.push({ main: b, thumb: t });
         log(i, 'doing', '已压缩');
       } catch (e) {
         log(i, 'err', '无法处理');
         toast(e.message, 5000);
-        blobs.push(null);
+        pairs.push(null);
       }
     }
     var existing = await Gh.listDir('photos/' + slug);
@@ -594,14 +604,20 @@
       if (m) next = Math.max(next, parseInt(m[1], 10) + 1);
     });
     var added = [];
-    for (var j = 0; j < blobs.length; j++) {
-      if (!blobs[j]) continue;
+    for (var j = 0; j < pairs.length; j++) {
+      if (!pairs[j]) continue;
       var name = (next < 10 ? '0' : '') + next + '.jpg';
       var path = 'photos/' + slug + '/' + name;
       log(j, 'doing', '上传中');
       try {
-        await Gh.put(path, await fileB64(blobs[j], path), '上传照片 ' + path);
-        added.push(path);
+        await Gh.put(path, await fileB64(pairs[j].main, path), '上传照片 ' + path);
+        var tpath = 'photos/' + slug + '/' + name.replace('.jpg', 's.jpg');
+        var thumbOK = false;
+        try {
+          await Gh.put(tpath, await fileB64(pairs[j].thumb, tpath), '上传缩略图 ' + tpath);
+          thumbOK = true;
+        } catch (_) {}
+        added.push({ file: path, thumb: thumbOK ? tpath : undefined });
         log(j, 'ok', '完成');
         next++;
       } catch (e) {
@@ -611,13 +627,13 @@
     }
     if (!added.length) throw new Error('没有照片上传成功');
     var place = await getPlace(slug);
-    place.photos = (place.photos || []).concat(added.map(function (f) { return { file: f }; }));
+    place.photos = (place.photos || []).concat(added);
     await Gh.putJSON('content/places/' + slug + '.json', place, '「' + place.name + '」新增 ' + added.length + ' 张照片');
     // 同步首页索引的封面与计数
     try {
       var idx = await Gh.getJSON('content/places.json');
       idx.data.places.forEach(function (it) {
-        if (it.slug === slug) { it.cover = place.photos[0].file; it.photoCount = place.photos.length; }
+        if (it.slug === slug) { it.cover = thumbOf(place.photos[0]); it.photoCount = place.photos.length; }
       });
       await Gh.putJSON('content/places.json', idx.data, '更新「' + place.name + '」封面');
     } catch (_) {}
@@ -833,11 +849,14 @@
           summary: '',
           feelings: ''
         };
-        // 读取刚上传的照片清单
+        // 读取刚上传的照片清单（主图与缩略图配对）
         if (files.length) {
-          var names = await Gh.listDir('photos/' + slug);
-          names.sort();
-          placeData.photos = names.map(function (n) { return { file: 'photos/' + slug + '/' + n }; });
+          var all = await Gh.listDir('photos/' + slug);
+          var mains = all.filter(function (n) { return /^\d+\.jpg$/.test(n); }).sort();
+          placeData.photos = mains.map(function (n) {
+            var t = 'photos/' + slug + '/' + n.replace('.jpg', 's.jpg');
+            return { file: 'photos/' + slug + '/' + n, thumb: all.indexOf(n.replace('.jpg', 's.jpg')) >= 0 ? t : undefined };
+          });
         }
         await Gh.putJSON('content/places/' + slug + '.json', placeData, '新增「' + name + '」');
 
@@ -845,7 +864,7 @@
         idx.data.places.unshift({
           slug: slug, name: name, date: date,
           region: placeData.region, landform: placeData.landform,
-          cover: placeData.photos.length ? placeData.photos[0].file : null,
+          cover: placeData.photos.length ? thumbOf(placeData.photos[0]) : null,
           photoCount: placeData.photos.length,
           summary: 'AI 正在写介绍…', status: 'pending'
         });
@@ -866,20 +885,28 @@
 
   /* 新地方的入库流程（不复用 uploadPhotos，因为 place.json 尚不存在） */
   async function uploadPhotosToNew(slug, files, log) {
-    var blobs = [];
+    var pairs = [];
     for (var i = 0; i < files.length; i++) {
       log(i, 'doing', '压缩中');
-      try { blobs.push(await compressImage(files[i])); }
-      catch (e) { blobs.push(null); toast(e.message, 5000); }
+      try {
+        pairs.push({
+          main: await compressImage(files[i]),
+          thumb: await compressImage(files[i], 900, 0.76)
+        });
+      } catch (e) { pairs.push(null); toast(e.message, 5000); }
     }
     var count = 0;
-    for (var j = 0; j < blobs.length; j++) {
-      if (!blobs[j]) { log(j, 'err', '跳过'); continue; }
+    for (var j = 0; j < pairs.length; j++) {
+      if (!pairs[j]) { log(j, 'err', '跳过'); continue; }
       var name = (j + 1 < 10 ? '0' : '') + (j + 1) + '.jpg';
       var path = 'photos/' + slug + '/' + name;
       log(j, 'doing', '上传中');
       try {
-        await Gh.put(path, await fileB64(blobs[j], path), '上传照片 ' + path);
+        await Gh.put(path, await fileB64(pairs[j].main, path), '上传照片 ' + path);
+        try {
+          var tpath = 'photos/' + slug + '/' + name.replace('.jpg', 's.jpg');
+          await Gh.put(tpath, await fileB64(pairs[j].thumb, tpath), '上传缩略图 ' + tpath);
+        } catch (_) {}
         count++;
         log(j, 'ok', '完成');
       } catch (e) {
