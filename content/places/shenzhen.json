@@ -1,0 +1,22 @@
+{
+  "slug": "shenzhen",
+  "name": "深圳",
+  "date": "",
+  "region": "广东省深圳市 · 珠江口东岸",
+  "landform": "滨海平原 · 丘陵海岸",
+  "notes": "从渔村到都市的四十年：天际线、海湾与梧桐山",
+  "coords": { "lat": 22.54, "lng": 114.06 },
+  "status": "pending",
+  "introSource": null,
+  "photos": [],
+  "placeholder": "placeholder/shenzhen.svg",
+  "geo": {
+    "landform": "滨海平原与低丘海岸",
+    "elevation": "市区约 50 米（梧桐山 944 米）",
+    "position": "22.54°N, 114.06°E",
+    "bestSeason": "10 月–次年 3 月"
+  },
+  "intro": "",
+  "summary": "",
+  "feelings": ""
+}
