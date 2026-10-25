@@ -20,5 +20,8 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install Pillow
+        run: pip install Pillow
+
       - name: Fetch cover photos from Wikimedia Commons
         run: python .github/scripts/fetch_covers.py
