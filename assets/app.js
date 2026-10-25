@@ -8,6 +8,7 @@
     places: null,   // 索引数组
     pollTimer: null,
     view: '',
+    navToken: 0,   // 路由代际：丢弃过期异步渲染，防止慢请求覆盖新页面
     next: null,     // → 键回调（首页切书 / 地方页翻页）
     prev: null,     // ← 键回调
     curSlug: ''
@@ -110,6 +111,7 @@
 
   /* ---------- 路由 ---------- */
   function route() {
+    store.navToken++;
     if (store.pollTimer) { clearInterval(store.pollTimer); store.pollTimer = null; }
     store.next = null;
     store.prev = null;
@@ -249,13 +251,16 @@
 
   async function viewPlace(slug) {
     store.view = 'place';
+    var tk = store.navToken;
     app.innerHTML = '<div class="loading">正在翻到这一页 …</div>';
     var p;
     try { p = await getPlace(slug); }
     catch (e) {
+      if (tk !== store.navToken) return;
       app.innerHTML = '<div class="notfound"><h2>没有找到这个地方</h2><p class="muted">它可能还没创建，或者名字变了。<a href="#/">回到首页</a></p></div>';
       return;
     }
+    if (tk !== store.navToken) return;   // 等待期间已切到别的页面
     renderPlace(p);
     if (p.status === 'pending') {
       store.pollTimer = setInterval(async function () {
@@ -263,6 +268,7 @@
           var np = await getPlace(slug);
           if (np.status !== 'pending') {
             clearInterval(store.pollTimer); store.pollTimer = null;
+            if (tk !== store.navToken) return;
             renderPlace(np);
             toast('AI 写好了「' + np.name + '」的风景介绍 ✨');
           }
