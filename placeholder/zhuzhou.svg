@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaeedb"/><stop offset="1" stop-color="#d9e2c6"/>
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7aa8b5"/><stop offset="1" stop-color="#4f8192"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1220" cy="230" r="58" fill="#f7f2df" opacity=".9"/>
+  <ellipse cx="420" cy="180" rx="130" ry="26" fill="#ffffff" opacity=".75"/>
+  <path d="M0,470 C260,380 480,480 720,430 C960,380 1180,470 1420,420 C1500,404 1580,420 1600,412 L1600,620 L0,620 Z" fill="#9db27e"/>
+  <path d="M0,560 C320,480 620,570 940,520 C1220,477 1440,540 1600,505 L1600,700 L0,700 Z" fill="#7d9868"/>
+  <g fill="#8b919b">
+    <rect x="150" y="520" width="34" height="90"/><rect x="200" y="545" width="28" height="65"/><rect x="245" y="505" width="40" height="105"/><rect x="298" y="530" width="30" height="80"/>
+    <rect x="1200" y="525" width="38" height="85"/><rect x="1252" y="548" width="26" height="62"/><rect x="1290" y="510" width="42" height="100"/><rect x="1345" y="536" width="28" height="74"/>
+  </g>
+  <path d="M0,640 C300,600 560,700 800,660 C1060,617 1300,700 1600,640 L1600,1000 L0,1000 Z" fill="url(#river)"/>
+  <path d="M0,700 C400,668 1200,720 1600,688" stroke="#bcd6de" stroke-width="10" fill="none" opacity=".5"/>
+  <path d="M300,790 C700,762 1100,806 1450,780" stroke="#bcd6de" stroke-width="7" fill="none" opacity=".35"/>
+  <path d="M620,640 L980,640 L900,1000 L700,1000 Z" fill="#3f7284" opacity=".9"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#16262e" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#eef6f9" letter-spacing="10">株 洲</text>
+  <text x="1552" y="970" font-size="22" fill="#ddeaf0" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>
