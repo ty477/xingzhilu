@@ -55,9 +55,8 @@
       if (!/\.github\.io$/.test(host)) return null;
       var owner = host.split('.')[0];
       var seg = location.pathname.split('/').filter(Boolean)[0];
-      if (seg && owner + '.github.io' !== host) {
-        return { owner: owner, repo: seg };
-      }
+      // 有路径段 = 项目页（user.github.io/repo）；根路径 = 用户主页仓库
+      if (seg) return { owner: owner, repo: seg };
       return { owner: owner, repo: owner + '.github.io' };
     },
 
