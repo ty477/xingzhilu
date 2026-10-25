@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9e8ee"/><stop offset="1" stop-color="#b3d3de"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a92a6"/><stop offset="1" stop-color="#2b6377"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1290" cy="200" r="54" fill="#f6f2e6" opacity=".9"/>
+  <ellipse cx="420" cy="170" rx="120" ry="22" fill="#ffffff" opacity=".7"/>
+  <path d="M0,540 C220,500 380,560 560,530 C760,497 900,555 1080,525 C1280,492 1440,545 1600,520 L1600,660 L0,660 Z" fill="#7c8b8a"/>
+  <path d="M0,600 L260,600 L300,565 L360,600 L520,600 L560,540 L640,600 L880,600 L920,570 L980,600 L1600,600 L1600,680 L0,680 Z" fill="#5d6f70"/>
+  <rect x="0" y="660" width="1600" height="200" fill="url(#sea)"/>
+  <path d="M0,700 C400,685 1200,715 1600,700" stroke="#9fd0dd" stroke-width="8" fill="none" opacity=".5"/>
+  <path d="M0,760 C500,745 1100,770 1600,752" stroke="#9fd0dd" stroke-width="6" fill="none" opacity=".35"/>
+  <g>
+    <rect x="1210" y="420" width="44" height="150" fill="#f4f0e4"/>
+    <rect x="1218" y="448" width="12" height="20" fill="#3a5a68"/>
+    <rect x="1234" y="448" width="12" height="20" fill="#3a5a68"/>
+    <rect x="1218" y="490" width="12" height="20" fill="#3a5a68"/>
+    <rect x="1234" y="490" width="12" height="20" fill="#3a5a68"/>
+    <path d="M1202,420 L1232,384 L1262,420 Z" fill="#b04a3a"/>
+    <circle cx="1232" cy="398" r="6" fill="#f6e9b8"/>
+  </g>
+  <path d="M300,720 q14,-16 28,0 M350,742 q10,-12 20,0 M260,748 q11,-13 22,0" stroke="#e8f2f5" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#12303b" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#eef7f9" letter-spacing="10">大 连</text>
+  <text x="1552" y="970" font-size="22" fill="#dceef2" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>
