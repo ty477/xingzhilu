@@ -1,7 +1,7 @@
 {
   "slug": "zhangye",
   "name": "张掖 · 七彩丹霞",
-  "date": "",
+  "date": "2025-07",
   "region": "甘肃省张掖市临泽县",
   "landform": "彩色丘陵 · 丹霞",
   "notes": "",
@@ -28,5 +28,16 @@
     "license": "CC BY-SA 4.0",
     "title": "Zhangye Danxia.JPG",
     "source": "https://commons.wikimedia.org/wiki/File:Zhangye_Danxia.JPG"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "嘉峪关",
+      "why": "长城西端与祁连雪山同框"
+    },
+    {
+      "name": "敦煌",
+      "why": "继续向西，丝路重镇",
+      "slug": "dunhuang"
+    }
+  ]
 }
