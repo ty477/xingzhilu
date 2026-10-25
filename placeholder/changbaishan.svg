@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ccdbe3"/><stop offset="1" stop-color="#edf2f4"/>
+    </linearGradient>
+    <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4d87a6"/><stop offset="1" stop-color="#2b5d7d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <ellipse cx="500" cy="200" rx="130" ry="26" fill="#ffffff" opacity=".75"/>
+  <ellipse cx="1120" cy="150" rx="110" ry="22" fill="#ffffff" opacity=".7"/>
+  <path d="M800,120 L1120,620 L480,620 Z" fill="#8d9195"/>
+  <path d="M800,120 L960,370 L640,370 Z" fill="#7c8186"/>
+  <path d="M800,120 L905,290 L695,290 Z" fill="#f6fafc"/>
+  <path d="M800,205 L860,300 L740,300 Z" fill="#9fc3d6" opacity=".9"/>
+  <ellipse cx="800" cy="292" rx="62" ry="16" fill="#3e6f8e"/>
+  <path d="M0,620 L480,620 L1120,620 L1600,620 L1600,700 L0,700 Z" fill="#a4ad9c"/>
+  <path d="M0,700 C300,660 700,720 1000,680 C1250,647 1480,690 1600,668 L1600,1000 L0,1000 Z" fill="#7f937f"/>
+  <path d="M0,760 C360,720 760,780 1120,735 C1340,708 1520,745 1600,728 L1600,1000 L0,1000 Z" fill="#5f7562"/>
+  <ellipse cx="800" cy="805" rx="330" ry="48" fill="url(#lake)"/>
+  <ellipse cx="800" cy="798" rx="210" ry="26" fill="#7fb3cc" opacity=".5"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#16262e" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#eef6f9" letter-spacing="10">长 白 山 · 天 池</text>
+  <text x="1552" y="970" font-size="22" fill="#ddeaf0" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>

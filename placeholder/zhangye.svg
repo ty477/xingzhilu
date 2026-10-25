@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efe3cd"/><stop offset="1" stop-color="#e3c9a4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <path d="M0,470 C260,400 460,470 700,430 C940,390 1140,460 1380,420 C1480,404 1560,420 1600,412 L1600,640 L0,640 Z" fill="#8a5a6e"/>
+  <path d="M0,560 C300,490 560,560 820,515 C1080,470 1300,545 1600,495 L1600,760 L0,760 Z" fill="#a3543f"/>
+  <path d="M0,560 C300,490 560,560 820,515" stroke="#c98a63" stroke-width="13" fill="none" opacity=".65"/>
+  <path d="M0,600 C260,545 520,605 760,565 C1040,518 1260,580 1600,540" stroke="#7c3b2c" stroke-width="11" fill="none" opacity=".6"/>
+  <path d="M0,660 C340,590 640,660 960,610 C1200,573 1420,630 1600,600 L1600,860 L0,860 Z" fill="#c9703f"/>
+  <path d="M0,660 C340,590 640,660 960,610" stroke="#e2a267" stroke-width="14" fill="none" opacity=".6"/>
+  <path d="M0,715 C300,655 620,715 940,668 C1220,626 1440,680 1600,655" stroke="#9c4f33" stroke-width="12" fill="none" opacity=".6"/>
+  <path d="M0,800 C380,730 700,800 1040,745 C1280,706 1480,755 1600,735 L1600,1000 L0,1000 Z" fill="#a3813f"/>
+  <path d="M0,800 C380,730 700,800 1040,745" stroke="#cbb26a" stroke-width="12" fill="none" opacity=".7"/>
+  <path d="M0,860 C420,800 760,860 1100,812 C1330,780 1520,820 1600,805" stroke="#7a5a2e" stroke-width="10" fill="none" opacity=".55"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#2e1a12" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#f7ecd9" letter-spacing="10">张 掖 · 七 彩 丹 霞</text>
+  <text x="1552" y="970" font-size="22" fill="#ecdfc8" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2e3c8"/><stop offset="1" stop-color="#e4c79c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1230" cy="300" r="70" fill="#f8ecd0" opacity=".9"/>
+  <path d="M0,700 L300,430 L520,620 L760,360 L1010,640 L1240,450 L1600,700 L1600,1000 L0,1000 Z" fill="#8a7458"/>
+  <path d="M760,360 L860,480 L660,480 Z" fill="#f6f2e8"/>
+  <path d="M300,430 L378,532 L222,532 Z" fill="#f6f2e8" opacity=".85"/>
+  <path d="M0,820 C400,770 900,850 1600,790 L1600,1000 L0,1000 Z" fill="#5f7562"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#1c1a12" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#f7eedd" letter-spacing="10">下 一 站</text>
+  <text x="1552" y="970" font-size="22" fill="#ecdfc8" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>

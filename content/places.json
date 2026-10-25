@@ -1,0 +1,48 @@
+{
+  "places": [
+    {
+      "slug": "dunhuang",
+      "name": "敦煌",
+      "date": "",
+      "region": "甘肃省酒泉市",
+      "landform": "沙漠 · 绿洲 · 风蚀",
+      "cover": "placeholder/dunhuang.svg",
+      "photoCount": 0,
+      "summary": "丝路咽喉：风与沙、泉与窟在此同框。",
+      "status": "ready"
+    },
+    {
+      "slug": "qinghaihu",
+      "name": "青海湖",
+      "date": "",
+      "region": "青海省海南藏族自治州",
+      "landform": "高原断陷湖",
+      "cover": "placeholder/qinghaihu.svg",
+      "photoCount": 0,
+      "summary": "青色的海——中国最大的咸水湖，构造与气候的作品。",
+      "status": "ready"
+    },
+    {
+      "slug": "zhangye",
+      "name": "张掖 · 七彩丹霞",
+      "date": "",
+      "region": "甘肃省张掖市临泽县",
+      "landform": "彩色丘陵 · 丹霞",
+      "cover": "placeholder/zhangye.svg",
+      "photoCount": 0,
+      "summary": "一亿年沉积挤压出的千层糕，中国最鲜艳的山。",
+      "status": "ready"
+    },
+    {
+      "slug": "changbaishan",
+      "name": "长白山 · 天池",
+      "date": "",
+      "region": "吉林省延边朝鲜族自治州",
+      "landform": "火山 · 火口湖",
+      "cover": "placeholder/changbaishan.svg",
+      "photoCount": 0,
+      "summary": "火山口里的中国最深湖泊，运气与日出的赌局。",
+      "status": "ready"
+    }
+  ]
+}
