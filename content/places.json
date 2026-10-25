@@ -1,17 +1,6 @@
 {
   "places": [
     {
-      "slug": "_selftest",
-      "name": "链路自检",
-      "date": "",
-      "region": "测试",
-      "landform": "",
-      "cover": null,
-      "photoCount": 0,
-      "summary": "测试占位数据，无实景可写，只作链路自检说明。",
-      "status": "ready"
-    },
-    {
       "slug": "dunhuang",
       "name": "敦煌",
       "date": "",
