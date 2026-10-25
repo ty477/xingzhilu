@@ -1,7 +1,7 @@
 {
   "slug": "beijing",
   "name": "北京",
-  "date": "",
+  "date": "2025-10",
   "region": "北京市 · 华北平原北端",
   "landform": "华北平原 · 燕山山前",
   "notes": "古都与首都：中轴线、故宫，往西是西山",
@@ -28,5 +28,19 @@
     "license": "CC BY-SA 3.0",
     "title": "Temple of Heaven, Beijing, China - 010 edit.jpg",
     "source": "https://commons.wikimedia.org/wiki/File:Temple_of_Heaven,_Beijing,_China_-_010_edit.jpg"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "承德",
+      "why": "清代避暑山庄，向坝上的过渡带"
+    },
+    {
+      "name": "坝上草原",
+      "why": "华北平原爬上内蒙古高原的第一级"
+    }
+  ],
+  "visits": [
+    "2024-10",
+    "2025-10"
+  ]
 }
