@@ -711,7 +711,12 @@
         var full = await Gh.test();
         st.textContent = '✅ 已连接 ' + full; st.style.color = 'var(--teal)';
       } catch (e) {
-        st.textContent = '❌ ' + e.message; st.style.color = 'var(--red)';
+        if (e.status === 404) {
+          st.textContent = '❌ 找不到仓库：请确认「仓库名」填的是 xingzhilu，且令牌授权时选中了这个仓库';
+        } else {
+          st.textContent = '❌ ' + e.message;
+        }
+        st.style.color = 'var(--red)';
       }
       btn.disabled = false;
     });
