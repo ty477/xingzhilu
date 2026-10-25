@@ -1,0 +1,17 @@
+{
+  "slug": "_selftest",
+  "name": "链路自检",
+  "date": "",
+  "region": "测试数据（稍后自动删除）",
+  "landform": "",
+  "notes": "系统自检：验证 AI 自动生成链路",
+  "coords": null,
+  "status": "pending",
+  "introSource": null,
+  "photos": [],
+  "placeholder": null,
+  "geo": {},
+  "intro": "",
+  "summary": "",
+  "feelings": ""
+}

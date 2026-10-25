@@ -1,6 +1,17 @@
 {
   "places": [
     {
+      "slug": "_selftest",
+      "name": "链路自检",
+      "date": "",
+      "region": "测试",
+      "landform": "",
+      "cover": null,
+      "photoCount": 0,
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
+    },
+    {
       "slug": "dunhuang",
       "name": "敦煌",
       "date": "",
