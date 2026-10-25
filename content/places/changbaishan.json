@@ -11,7 +11,32 @@
   },
   "status": "ready",
   "introSource": "human",
-  "photos": [],
+  "photos": [
+    {
+      "file": "photos/changbaishan/01.jpg"
+    },
+    {
+      "file": "photos/changbaishan/02.jpg"
+    },
+    {
+      "file": "photos/changbaishan/03.jpg"
+    },
+    {
+      "file": "photos/changbaishan/04.jpg"
+    },
+    {
+      "file": "photos/changbaishan/05.jpg"
+    },
+    {
+      "file": "photos/changbaishan/06.jpg"
+    },
+    {
+      "file": "photos/changbaishan/07.jpg"
+    },
+    {
+      "file": "photos/changbaishan/08.jpg"
+    }
+  ],
   "placeholder": "placeholder/changbaishan.svg",
   "geo": {
     "landform": "复式火山 · 火山口湖",
