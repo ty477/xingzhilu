@@ -1,0 +1,22 @@
+{
+  "slug": "beijing",
+  "name": "北京",
+  "date": "",
+  "region": "北京市 · 华北平原北端",
+  "landform": "华北平原 · 燕山山前",
+  "notes": "古都与首都：中轴线、故宫，往西是西山",
+  "coords": { "lat": 39.9, "lng": 116.4 },
+  "status": "pending",
+  "introSource": null,
+  "photos": [],
+  "placeholder": "placeholder/beijing.svg",
+  "geo": {
+    "landform": "永定河冲积扇 · 燕山山前",
+    "elevation": "市区约 44 米",
+    "position": "39.90°N, 116.40°E",
+    "bestSeason": "9–11 月（秋高气爽）"
+  },
+  "intro": "",
+  "summary": "",
+  "feelings": ""
+}
