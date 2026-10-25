@@ -1,7 +1,7 @@
 {
   "slug": "zhuzhou",
   "name": "株洲",
-  "date": "",
+  "date": "2018-07",
   "region": "湖南省株洲市 · 湘江之滨",
   "landform": "湘江谷地 · 江南丘陵",
   "notes": "湘江边的火车拉来的城市，工业与市井气",
@@ -28,5 +28,15 @@
     "license": "CC BY-SA 3.0",
     "title": "ZhuZhou.jpg",
     "source": "https://commons.wikimedia.org/wiki/File:ZhuZhou.jpg"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "长沙",
+      "why": "沿湘江而下半小时"
+    },
+    {
+      "name": "衡山",
+      "why": "南岳花岗岩穹窿，独如坐"
+    }
+  ]
 }
