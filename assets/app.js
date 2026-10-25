@@ -99,6 +99,7 @@
 
   function coverOf(p) {
     if (p.photos && p.photos.length) return p.photos[0].file;
+    if (p.coverPhoto) return p.coverPhoto;
     return p.placeholder || 'placeholder/default.svg';
   }
   function sortedPlaces() {
@@ -265,13 +266,14 @@
         '<div class="caption">' +
           '<h1>' + esc(p.name) + (p.date ? '<span class="badge ai">' + esc(fmtDate(p.date)) + '</span>' : '') + statusBadge(p) + '</h1>' +
           '<div class="sub">' + [p.region, geo.position].filter(Boolean).map(esc).join(' · ') + '</div>' +
+          (p.coverCredit ? '<div class="credit">封面实拍：' + esc(p.coverCredit.author) + ' / ' + esc(p.coverCredit.license) + '</div>' : '') +
         '</div>' +
       '</div>';
 
     /* 相册 · 摊开的翻页相册 */
     var photoSrcs = photos.length
       ? photos.map(function (ph) { return ph.file; })
-      : [p.placeholder || 'placeholder/default.svg'];
+      : [p.coverPhoto || p.placeholder || 'placeholder/default.svg'];
     var single = window.matchMedia('(max-width: 640px)').matches;
     var album =
       '<div class="flipbook" id="flipbook">' +
@@ -283,7 +285,7 @@
         '</div>' +
         '<div class="fb-hint">点击书页或 ← → 键翻页 · 点击照片可放大</div>' +
       '</div>' +
-      (photos.length ? '' : '<div class="placeholder-note">🌄 这本相册里还是占位图。点右上角「添加照片」，换上你亲眼见过的画面。</div>');
+      (photos.length ? '' : '<div class="placeholder-note">📷 封面是图库实拍示意。点右上角「添加照片」，换成你亲眼见过的画面——上传后封面也会自动换成你的照片。</div>');
 
     /* 风景介绍 */
     var intro;
