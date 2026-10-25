@@ -85,7 +85,7 @@
   function loadSite() {
     return jget('content/site.json').then(function (s) {
       store.site = s;
-      document.title = s.title + ' · ' + (s.subtitle || '我的旅行相册');
+      document.title = s.title || '行走中国，熠熠生辉——旅行相册';
       $('[data-role="site-title"]').textContent = s.title;
       if (s.quote) $('[data-role="site-quote"]').textContent = s.quote;
     }).catch(function () {});
@@ -148,7 +148,7 @@
     app.innerHTML =
       '<section class="shelf-hero">' +
         '<div class="shelf-top">' +
-          '<div class="shelf-brand">' + esc(site.title || '行知录') + '<i>——</i>' + esc(site.tagline || '互动旅行档案') + '</div>' +
+          '<div class="shelf-brand">' + esc(site.shortTitle || site.title) + '<i>——</i>' + esc(site.tagline || '互动旅行档案') + '</div>' +
           '<div class="shelf-meta">' + places.length + ' 册旅行日志 · ' + nPhotos + ' 张照片</div>' +
         '</div>' +
         '<div class="shelf-stage">' +
@@ -200,7 +200,7 @@
         '<div class="b3d-bottom"></div>' +
         '<div class="b3d-cover">' +
           '<img class="cov" src="' + esc(cover) + '" alt="' + esc(p.name) + '">' +
-          '<div class="b3d-brow">' + esc(site.title || '行知录') + ' · 手册 ' + num + '</div>' +
+          '<div class="b3d-brow">' + esc(site.shortTitle || site.title) + ' · 手册 ' + num + '</div>' +
           '<div class="b3d-veil"></div>' +
           '<div class="b3d-label"><span>' + esc(p.region || '') + (p.date ? ' · ' + esc(fmtDate(p.date)) : '') + '</span><b>' + num + '</b></div>' +
         '</div>';
@@ -353,7 +353,7 @@
       if (pg.type === 'title') {
         return '<div class="fb-page fb-title">' +
           '<div class="fb-ring"></div>' +
-          '<div class="fbt-brow">' + esc(site.title || '行知录') + ' · 旅行手册</div>' +
+          '<div class="fbt-brow">' + esc((store.site && (store.site.shortTitle || store.site.title)) || '行走中国') + ' · 旅行手册</div>' +
           '<h3>' + esc(pg.name) + '</h3>' +
           '<p class="fbt-meta">' + [p.region, p.date ? fmtDate(p.date) : ''].filter(Boolean).map(esc).join(' · ') + '</p>' +
           '<p class="fbt-foot">' + (p.photos.length ? p.photos.length + ' 张照片 · ' : '占位相册 · ') + (p.landform || '') + '</p>' +
