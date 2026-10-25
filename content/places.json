@@ -52,8 +52,8 @@
       "landform": "关中平原",
       "cover": "placeholder/xian.svg",
       "photoCount": 0,
-      "summary": "AI 正在写介绍…",
-      "status": "pending"
+      "summary": "西安：渭河谷地上的古都，南望秦岭",
+      "status": "ready"
     },
     {
       "slug": "shenzhen",
@@ -63,8 +63,8 @@
       "landform": "滨海丘陵",
       "cover": "placeholder/shenzhen.svg",
       "photoCount": 0,
-      "summary": "AI 正在写介绍…",
-      "status": "pending"
+      "summary": "深圳：丘陵海岸与滨海平原上的四十年城市地理",
+      "status": "ready"
     },
     {
       "slug": "zhuzhou",
@@ -74,8 +74,8 @@
       "landform": "湘江谷地",
       "cover": "placeholder/zhuzhou.svg",
       "photoCount": 0,
-      "summary": "AI 正在写介绍…",
-      "status": "pending"
+      "summary": "湘江谷地与铁路十字路口的工业城市",
+      "status": "ready"
     },
     {
       "slug": "beijing",
@@ -85,8 +85,8 @@
       "landform": "华北平原",
       "cover": "placeholder/beijing.svg",
       "photoCount": 0,
-      "summary": "AI 正在写介绍…",
-      "status": "pending"
+      "summary": "北京：燕山与西山之间的平原古都，山前冲积扇上的中轴线之城。",
+      "status": "ready"
     }
   ]
 }
