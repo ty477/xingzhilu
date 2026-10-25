@@ -29,6 +29,7 @@ TARGETS = [
     ('shenzhen',     'Shenzhen skyline',            'Shenzhen city'),
     ('zhuzhou',      'Zhuzhou',                     None),
     ('beijing',      'Temple of Heaven',            'Forbidden City'),
+    ('dalian',       'Dalian coast',                'Dalian Xinghai'),
 ]
 
 
