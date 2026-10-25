@@ -1,0 +1,22 @@
+{
+  "slug": "zhuzhou",
+  "name": "株洲",
+  "date": "",
+  "region": "湖南省株洲市 · 湘江之滨",
+  "landform": "湘江谷地 · 江南丘陵",
+  "notes": "湘江边的火车拉来的城市，工业与市井气",
+  "coords": { "lat": 27.83, "lng": 113.13 },
+  "status": "pending",
+  "introSource": null,
+  "photos": [],
+  "placeholder": "placeholder/zhuzhou.svg",
+  "geo": {
+    "landform": "湘江谷地 · 江南丘陵",
+    "elevation": "约 60 米",
+    "position": "27.83°N, 113.13°E",
+    "bestSeason": "4–5 月、9–10 月"
+  },
+  "intro": "",
+  "summary": "",
+  "feelings": ""
+}
