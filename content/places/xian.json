@@ -1,7 +1,7 @@
 {
   "slug": "xian",
   "name": "西安",
-  "date": "",
+  "date": "2023-07",
   "region": "陕西省西安市 · 关中平原",
   "landform": "关中平原 · 渭河谷地",
   "notes": "十三朝古都：城墙、钟鼓楼，往南是秦岭",
@@ -28,5 +28,15 @@
     "license": "CC BY-SA 4.0",
     "title": "Xi'an city walls (89479).jpg",
     "source": "https://commons.wikimedia.org/wiki/File:Xi%27an_city_walls_(89479).jpg"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "华山",
+      "why": "秦岭花岗岩断块山，西岳之险"
+    },
+    {
+      "name": "壶口瀑布",
+      "why": "黄河收束进晋陕峡谷的样子"
+    }
+  ]
 }
