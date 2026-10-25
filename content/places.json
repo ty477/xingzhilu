@@ -6,7 +6,7 @@
       "date": "",
       "region": "甘肃省酒泉市",
       "landform": "沙漠 · 绿洲 · 风蚀",
-      "cover": "placeholder/dunhuang.svg",
+      "cover": "covers/dunhuang.jpg",
       "photoCount": 0,
       "summary": "丝路咽喉：风与沙、泉与窟在此同框。",
       "status": "ready"
@@ -17,7 +17,7 @@
       "date": "2025-07",
       "region": "青海省海南藏族自治州",
       "landform": "高原断陷湖",
-      "cover": "placeholder/qinghaihu.svg",
+      "cover": "covers/qinghaihu.jpg",
       "photoCount": 0,
       "summary": "青色的海——中国最大的咸水湖，构造与气候的作品。",
       "status": "ready"
@@ -28,7 +28,7 @@
       "date": "2025-07",
       "region": "甘肃省张掖市临泽县",
       "landform": "彩色丘陵 · 丹霞",
-      "cover": "placeholder/zhangye.svg",
+      "cover": "covers/zhangye.jpg",
       "photoCount": 0,
       "summary": "一亿年沉积挤压出的千层糕，中国最鲜艳的山。",
       "status": "ready"
@@ -39,7 +39,7 @@
       "date": "2026-10",
       "region": "吉林省延边朝鲜族自治州",
       "landform": "火山 · 火口湖",
-      "cover": "placeholder/changbaishan.svg",
+      "cover": "covers/changbaishan.jpg",
       "photoCount": 0,
       "summary": "火山口里的中国最深湖泊，运气与日出的赌局。",
       "status": "ready"
@@ -50,7 +50,7 @@
       "date": "2023-07",
       "region": "陕西省西安市",
       "landform": "关中平原",
-      "cover": "placeholder/xian.svg",
+      "cover": "covers/xian.jpg",
       "photoCount": 0,
       "summary": "AI 正在写介绍…",
       "status": "pending"
@@ -61,7 +61,7 @@
       "date": "2026-07",
       "region": "广东省深圳市",
       "landform": "滨海丘陵",
-      "cover": "placeholder/shenzhen.svg",
+      "cover": "covers/shenzhen.jpg",
       "photoCount": 0,
       "summary": "AI 正在写介绍…",
       "status": "pending"
@@ -72,7 +72,7 @@
       "date": "2018-07",
       "region": "湖南省株洲市",
       "landform": "湘江谷地",
-      "cover": "placeholder/zhuzhou.svg",
+      "cover": "covers/zhuzhou.jpg",
       "photoCount": 0,
       "summary": "AI 正在写介绍…",
       "status": "pending"
@@ -83,7 +83,7 @@
       "date": "2025-10",
       "region": "北京市",
       "landform": "华北平原",
-      "cover": "placeholder/beijing.svg",
+      "cover": "covers/beijing.jpg",
       "photoCount": 0,
       "summary": "AI 正在写介绍…",
       "status": "pending"
@@ -94,7 +94,7 @@
       "date": "2024-05",
       "region": "辽宁省大连市",
       "landform": "海蚀海岸",
-      "cover": "placeholder/dalian.svg",
+      "cover": "covers/dalian.jpg",
       "photoCount": 0,
       "summary": "AI 正在写介绍…",
       "status": "pending"

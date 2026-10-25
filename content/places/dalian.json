@@ -31,5 +31,12 @@
       "name": "丹东",
       "why": "鸭绿江口，江与海的交汇"
     }
-  ]
+  ],
+  "coverPhoto": "covers/dalian.jpg",
+  "coverCredit": {
+    "author": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "title": "Dalian China Jinguang-East-Coast-International-Apartments-01.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dalian_China_Jinguang-East-Coast-International-Apartments-01.jpg"
+  }
 }
