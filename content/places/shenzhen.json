@@ -1,7 +1,7 @@
 {
   "slug": "shenzhen",
   "name": "深圳",
-  "date": "",
+  "date": "2026-07",
   "region": "广东省深圳市 · 珠江口东岸",
   "landform": "滨海平原 · 丘陵海岸",
   "notes": "从渔村到都市的四十年：天际线、海湾与梧桐山",
@@ -28,5 +28,15 @@
     "license": "CC0",
     "title": "Skyline in Shenzhen (20250327).jpg",
     "source": "https://commons.wikimedia.org/wiki/File:Skyline_in_Shenzhen_(20250327).jpg"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "惠州 · 双月湾",
+      "why": "离城市最近的一片开阔海湾"
+    },
+    {
+      "name": "香港 · 维港",
+      "why": "一关之隔的城市海岸线"
+    }
+  ]
 }
