@@ -1,7 +1,7 @@
 {
   "slug": "qinghaihu",
   "name": "青海湖",
-  "date": "",
+  "date": "2025-07",
   "region": "青海省 · 湖北岸属海南藏族自治州",
   "landform": "高原断陷湖",
   "notes": "",
@@ -28,5 +28,16 @@
     "license": "CC BY-SA 4.0",
     "title": "202606 Qinghai Lake 04.jpg",
     "source": "https://commons.wikimedia.org/wiki/File:202606_Qinghai_Lake_04.jpg"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "茶卡盐湖",
+      "why": "柴达木东缘的「天空之镜」"
+    },
+    {
+      "name": "张掖",
+      "why": "回到河西走廊看彩色丘陵",
+      "slug": "zhangye"
+    }
+  ]
 }
