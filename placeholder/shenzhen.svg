@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe9f2"/><stop offset="1" stop-color="#a9d3e4"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d8ba1"/><stop offset="1" stop-color="#1f5f74"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1280" cy="220" r="60" fill="#ffffff" opacity=".8"/>
+  <ellipse cx="380" cy="190" rx="140" ry="28" fill="#ffffff" opacity=".7"/>
+  <g fill="#7fa3b5">
+    <rect x="120" y="470" width="70" height="170"/><rect x="210" y="430" width="55" height="210"/><rect x="280" y="490" width="80" height="150"/><rect x="380" y="400" width="60" height="240"/><rect x="460" y="450" width="90" height="190"/>
+  </g>
+  <g fill="#456f85">
+    <rect x="600" y="350" width="75" height="290"/><rect x="700" y="300" width="60" height="340"/><rect x="780" y="420" width="85" height="220"/><rect x="890" y="380" width="65" height="260"/><rect x="975" y="440" width="95" height="200"/><rect x="1090" y="330" width="70" height="310"/><rect x="1180" y="400" width="85" height="240"/><rect x="1290" y="360" width="62" height="280"/><rect x="1370" y="440" width="100" height="200"/><rect x="1490" y="390" width="80" height="250"/>
+  </g>
+  <g fill="#c7dce6" opacity=".85">
+    <rect x="608" y="365" width="10" height="270"/><rect x="710" y="315" width="9" height="320"/><rect x="1100" y="345" width="9" height="290"/><rect x="1300" y="375" width="9" height="260"/><rect x="1400" y="455" width="10" height="180"/>
+  </g>
+  <rect x="0" y="640" width="1600" height="280" fill="url(#sea)"/>
+  <path d="M0,700 C400,685 1200,715 1600,700" stroke="#9fd0dd" stroke-width="9" fill="none" opacity=".5"/>
+  <path d="M0,760 C500,745 1100,770 1600,755" stroke="#9fd0dd" stroke-width="6" fill="none" opacity=".35"/>
+  <path d="M0,880 L1600,880 L1600,1000 L0,1000 Z" fill="#c8b483"/>
+  <path d="M0,895 C500,882 1100,908 1600,890 L1600,1000 L0,1000 Z" fill="#ab9a6f" opacity=".8"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#12303b" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#eef7f9" letter-spacing="10">深 圳</text>
+  <text x="1552" y="970" font-size="22" fill="#dceef2" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>
