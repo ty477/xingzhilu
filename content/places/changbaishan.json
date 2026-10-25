@@ -13,28 +13,36 @@
   "introSource": "human",
   "photos": [
     {
-      "file": "photos/changbaishan/01.jpg"
+      "file": "photos/changbaishan/01.jpg",
+      "thumb": "photos/changbaishan/01s.jpg"
     },
     {
-      "file": "photos/changbaishan/02.jpg"
+      "file": "photos/changbaishan/02.jpg",
+      "thumb": "photos/changbaishan/02s.jpg"
     },
     {
-      "file": "photos/changbaishan/03.jpg"
+      "file": "photos/changbaishan/03.jpg",
+      "thumb": "photos/changbaishan/03s.jpg"
     },
     {
-      "file": "photos/changbaishan/04.jpg"
+      "file": "photos/changbaishan/04.jpg",
+      "thumb": "photos/changbaishan/04s.jpg"
     },
     {
-      "file": "photos/changbaishan/05.jpg"
+      "file": "photos/changbaishan/05.jpg",
+      "thumb": "photos/changbaishan/05s.jpg"
     },
     {
-      "file": "photos/changbaishan/06.jpg"
+      "file": "photos/changbaishan/06.jpg",
+      "thumb": "photos/changbaishan/06s.jpg"
     },
     {
-      "file": "photos/changbaishan/07.jpg"
+      "file": "photos/changbaishan/07.jpg",
+      "thumb": "photos/changbaishan/07s.jpg"
     },
     {
-      "file": "photos/changbaishan/08.jpg"
+      "file": "photos/changbaishan/08.jpg",
+      "thumb": "photos/changbaishan/08s.jpg"
     }
   ],
   "placeholder": "placeholder/changbaishan.svg",
@@ -63,5 +71,6 @@
       "name": "镜泊湖",
       "why": "玄武岩堰塞湖，火山地质课的续章"
     }
-  ]
+  ],
+  "coverThumb": "covers/changbaishan_s.jpg"
 }
