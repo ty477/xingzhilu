@@ -28,5 +28,15 @@
     "license": "CC BY-SA 4.0",
     "title": "Crescent Lake from the Singing Sand Dunes (20230918101214).jpg",
     "source": "https://commons.wikimedia.org/wiki/File:Crescent_Lake_from_the_Singing_Sand_Dunes_(20230918101214).jpg"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "嘉峪关",
+      "why": "明长城最西端，河西走廊的中转关口"
+    },
+    {
+      "name": "哈密",
+      "why": "出甘进疆第一站，戈壁与瓜果之城"
+    }
+  ]
 }
