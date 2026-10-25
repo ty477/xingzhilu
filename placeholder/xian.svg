@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4ddb9"/><stop offset=".55" stop-color="#eab77e"/><stop offset="1" stop-color="#d99a5e"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#948a7c"/><stop offset="1" stop-color="#7a7164"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="420" cy="330" r="72" fill="#f8ecd0" opacity=".85"/>
+  <path d="M0,560 L1600,540 L1600,640 L0,660 Z" fill="#a99e8d"/>
+  <path d="M1010,700 L1010,660 L1015,660 L1015,470 L1025,470 L1025,660 L1035,660 L1035,455 L1045,455 L1045,660 L1055,660 L1055,445 L1065,445 L1065,660 L1075,660 L1075,455 L1085,455 L1085,660 L1095,660 L1095,470 L1105,470 L1105,660 L1110,660 L1110,700 Z" fill="#5c5248"/>
+  <ellipse cx="1060" cy="450" rx="34" ry="14" fill="#5c5248"/>
+  <ellipse cx="1060" cy="430" rx="24" ry="11" fill="#5c5248"/>
+  <path d="M1054,445 L1060,392 L1066,445 Z" fill="#5c5248"/>
+  <path d="M0,690 C400,660 1200,720 1600,680 L1600,830 L0,830 Z" fill="url(#wall)"/>
+  <rect x="0" y="672" width="1600" height="22" fill="#b5aa98"/>
+  <g fill="#6b6257">
+    <rect x="60" y="700" width="46" height="10"/><rect x="150" y="700" width="46" height="10"/><rect x="240" y="700" width="46" height="10"/><rect x="330" y="700" width="46" height="10"/><rect x="420" y="700" width="46" height="10"/><rect x="510" y="700" width="46" height="10"/>
+  </g>
+  <path d="M0,830 L1600,830 L1600,1000 L0,1000 Z" fill="#5f574c"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#1f1710" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#f8efe0" letter-spacing="10">西 安</text>
+  <text x="1552" y="970" font-size="22" fill="#e9dcc4" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>
