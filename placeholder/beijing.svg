@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6dfae"/><stop offset=".55" stop-color="#eeb877"/><stop offset="1" stop-color="#dd8f5c"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a34a38"/><stop offset="1" stop-color="#8c3d2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="340" cy="300" r="76" fill="#f9edcd" opacity=".9"/>
+  <path d="M0,520 L240,470 L470,520 L700,455 L930,515 L1160,465 L1400,510 L1600,480 L1600,580 L0,580 Z" fill="#b78a5e" opacity=".7"/>
+  <g fill="#6e3f2e">
+    <rect x="770" y="600" width="60" height="90"/>
+    <path d="M690,600 Q800,540 910,600 Z"/>
+    <path d="M720,560 Q800,510 880,560 L896,572 Q800,530 704,572 Z"/>
+    <path d="M742,524 Q800,486 858,524 L872,536 Q800,502 728,536 Z"/>
+    <path d="M796,470 L800,442 L804,470 Z"/>
+    <circle cx="800" cy="440" r="6"/>
+  </g>
+  <path d="M0,690 C400,665 1200,712 1600,678 L1600,860 L0,860 Z" fill="url(#wall)"/>
+  <g fill="#f0d9a8" opacity=".85">
+    <rect x="200" y="720" width="60" height="100" rx="30"/>
+    <rect x="1340" y="720" width="60" height="100" rx="30"/>
+    <rect x="740" y="740" width="120" height="80" rx="8"/>
+  </g>
+  <path d="M0,860 L1600,860 L1600,1000 L0,1000 Z" fill="#5f2f24"/>
+  <rect x="0" y="920" width="1600" height="80" fill="#1f100c" opacity=".34"/>
+  <text x="48" y="972" font-size="40" fill="#f8efe0" letter-spacing="10">北 京</text>
+  <text x="1552" y="970" font-size="22" fill="#e9dcc4" text-anchor="end" letter-spacing="3">占位图 · 上传照片后自动替换</text>
+</svg>
