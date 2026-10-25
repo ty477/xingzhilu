@@ -290,7 +290,7 @@
         '<div class="caption">' +
           '<h1>' + esc(p.name) + (p.date ? '<span class="badge ai">' + esc(fmtDate(p.date)) + '</span>' : '') + statusBadge(p) + '</h1>' +
           '<div class="sub">' + [p.region, geo.position].filter(Boolean).map(esc).join(' · ') + '</div>' +
-          (p.coverCredit ? '<div class="credit">封面实拍：' + esc(p.coverCredit.author) + ' / ' + esc(p.coverCredit.license) + '</div>' : '') +
+          ((p.coverCredit && !(p.photos && p.photos.length)) ? '<div class="credit">封面实拍：' + esc(p.coverCredit.author) + ' / ' + esc(p.coverCredit.license) + '</div>' : '') +
         '</div>' +
       '</div>';
 
