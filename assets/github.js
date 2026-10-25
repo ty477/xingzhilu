@@ -75,7 +75,13 @@
         headers: headers,
         body: opt.body ? JSON.stringify(opt.body) : undefined
       });
-      if (r.status === 404) { var e = new Error('not found'); e.status = 404; throw e; }
+      if (r.status === 404) {
+        var m404 = '';
+        try { var j404 = await r.json(); m404 = j404 && j404.message ? j404.message : ''; } catch (_) {}
+        var e = new Error('not found（404）' + (m404 && m404 !== 'Not Found' ? '：' + m404 : '') + ' —— 请到「管理」页检查：仓库名应为 xingzhilu，令牌需授权该仓库');
+        e.status = 404;
+        throw e;
+      }
       if (r.status === 401) throw new Error('令牌无效或已过期（401），请到管理页重新填写');
       if (r.status === 403) throw new Error('没有权限（403）：请检查令牌对该仓库的 Contents 读写权限');
       if (r.status === 409) throw new Error('文件冲突（409），请稍等几秒重试');
