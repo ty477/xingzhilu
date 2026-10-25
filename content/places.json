@@ -43,6 +43,50 @@
       "photoCount": 0,
       "summary": "火山口里的中国最深湖泊，运气与日出的赌局。",
       "status": "ready"
+    },
+    {
+      "slug": "xian",
+      "name": "西安",
+      "date": "",
+      "region": "陕西省西安市",
+      "landform": "关中平原",
+      "cover": "placeholder/xian.svg",
+      "photoCount": 0,
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
+    },
+    {
+      "slug": "shenzhen",
+      "name": "深圳",
+      "date": "",
+      "region": "广东省深圳市",
+      "landform": "滨海丘陵",
+      "cover": "placeholder/shenzhen.svg",
+      "photoCount": 0,
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
+    },
+    {
+      "slug": "zhuzhou",
+      "name": "株洲",
+      "date": "",
+      "region": "湖南省株洲市",
+      "landform": "湘江谷地",
+      "cover": "placeholder/zhuzhou.svg",
+      "photoCount": 0,
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
+    },
+    {
+      "slug": "beijing",
+      "name": "北京",
+      "date": "",
+      "region": "北京市",
+      "landform": "华北平原",
+      "cover": "placeholder/beijing.svg",
+      "photoCount": 0,
+      "summary": "AI 正在写介绍…",
+      "status": "pending"
     }
   ]
 }
