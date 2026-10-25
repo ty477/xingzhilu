@@ -1,7 +1,7 @@
 {
   "slug": "changbaishan",
   "name": "长白山 · 天池",
-  "date": "",
+  "date": "2026-10",
   "region": "吉林省延边朝鲜族自治州",
   "landform": "火山 · 火口湖",
   "notes": "",
@@ -28,5 +28,15 @@
     "license": "CC BY-SA 4.0",
     "title": "Heaven Lake - Changbai Mountain (Aerial photograph).jpg",
     "source": "https://commons.wikimedia.org/wiki/File:Heaven_Lake_-_Changbai_Mountain_(Aerial_photograph).jpg"
-  }
+  },
+  "nextStops": [
+    {
+      "name": "延吉",
+      "why": "朝鲜族风情，一日直达的美食之城"
+    },
+    {
+      "name": "镜泊湖",
+      "why": "玄武岩堰塞湖，火山地质课的续章"
+    }
+  ]
 }
