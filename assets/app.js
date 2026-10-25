@@ -166,7 +166,8 @@
           '</div>' +
         '</div>' +
         '<div class="shelf-hint">← → 切换相册 · 点击书脊选择 · 回车翻开</div>' +
-      '</section>';
+      '</section>' +
+      timelineHTML(places);
 
     var spinesEl = $('#shelf-spines');
 
@@ -182,7 +183,7 @@
       info.innerHTML =
         '<div class="progress"><a id="sh-prev" title="上一册">←</a><b>' + num + '</b><span class="line"></span><span>' + pad2(places.length) + '</span></div>' +
         '<h1 class="shelf-title">' + esc(p.name) + '</h1>' +
-        '<p class="shelf-sub">' + [p.region, p.landform].filter(Boolean).map(esc).join(' · ') + '</p>' +
+        '<p class="shelf-sub">' + [p.region, p.landform, p.date ? fmtDate(p.date) : ''].filter(Boolean).map(esc).join(' · ') + '</p>' +
         '<p class="shelf-summary">' + esc(p.summary || '一段还没写下的旅程。') + '</p>' +
         '<div class="shelf-open"><a class="open-link" href="#/place/' + p.slug + '">打开旅程 ↗</a>' +
           (p.status === 'pending' ? '<span class="badge pending">✍️ AI 生成中</span>' : '') +
@@ -220,6 +221,23 @@
 
     selectBook(shelf.idx, true);
     window.scrollTo(0, 0);
+  }
+
+  /* ---------- 首页 · 旅程时间轴 ---------- */
+  function timelineHTML(places) {
+    var tl = places.slice().sort(function (a, b) {
+      return String(a.date || '').localeCompare(String(b.date || ''));
+    });
+    if (!tl.length) return '';
+    return '<section class="timeline-sec">' +
+      '<div class="tl-head"><span class="tl-kicker">TIMELINE</span><h2 class="tl-title">旅程时间轴</h2>' +
+      '<span class="tl-count">' + tl.length + ' 段旅程 · 从 ' + (tl[0].date ? tl[0].date.slice(0, 4) : '起点') + ' 到今</span></div>' +
+      '<div class="tl-track">' + tl.map(function (p) {
+        var year = p.date ? p.date.slice(0, 4) : '···';
+        var month = p.date ? (parseInt(p.date.slice(5, 7), 10) + ' 月') : '时间待补';
+        return '<a class="tl-item" href="#/place/' + p.slug + '" style="--sp:' + spineColorAt(tl.indexOf(p)) + '">' +
+          '<span class="tl-dot"></span><i>' + year + '</i><b>' + esc(p.name) + '</b><span class="tl-sub">' + esc(month) + '</span></a>';
+      }).join('') + '</div></section>';
   }
 
   /* ---------- 地方页 ---------- */
@@ -325,6 +343,13 @@
         '<section class="sec"><div class="sec-head"><span class="sec-num">' + CN_NUM[2] + '</span><h2 class="sec-title">自我感受<small>只属于你</small></h2></div>' +
           '<div class="feelings-box">' + feelings + '</div>' +
         '</section>' +
+        (p.nextStops && p.nextStops.length ?
+        '<section class="sec"><div class="sec-head"><span class="sec-num">肆</span><h2 class="sec-title">下一站<small>从这里继续出发</small></h2></div>' +
+        '<div class="next-stops">' + p.nextStops.map(function (s) {
+            var card = '<div class="ns-card"><div class="ns-name">' + esc(s.name) +
+              (s.slug ? '' : '<span class="ns-lock">待出发</span>') + '</div><p>' + esc(s.why) + '</p></div>';
+            return s.slug ? '<a class="ns-link" href="#/place/' + s.slug + '">' + card + '</a>' : card;
+          }).join('') + '</div></section>' : '') +
       '</div>';
 
     /* 事件绑定 · 翻页相册 */
