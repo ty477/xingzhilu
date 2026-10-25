@@ -59,7 +59,10 @@ a:hover{text-decoration:underline}
 .shelf-hero{
   min-height:calc(100vh - 72px);
   display:flex;flex-direction:column;justify-content:center;
-  background:linear-gradient(180deg,#EDEDEA 0%,#E7E5E0 100%);
+  background:
+    linear-gradient(180deg, rgba(241,239,234,.97) 0%, rgba(239,237,231,.90) 30%, rgba(235,233,227,.74) 62%, rgba(230,228,221,.58) 100%),
+    url("img/bg-clouds.jpg") center 42%/cover no-repeat,
+    linear-gradient(180deg,#EDEDEA,#E7E5E0);
   padding:34px clamp(18px,5vw,70px) 26px;
 }
 .shelf-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
